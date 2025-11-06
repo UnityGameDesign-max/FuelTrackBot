@@ -1,5 +1,6 @@
 import express, { type Request, type Response } from 'express'; 
 import dotenv from 'dotenv'; 
+import routes from "./routes/index.js"
 import { connectDB } from './config/db.js';
 
 dotenv.config();
@@ -9,7 +10,8 @@ app.use(express.json());
 
 connectDB();
 
-app.get('/', (_req: Request, res: Response) => res.send('Fuel Track Botis running'));
+app.use("/", routes);
+app.get('/', (_req: Request, res: Response) => res.send('Fuel Track Bot is running'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`🔥 Server running on port ${PORT}`));
